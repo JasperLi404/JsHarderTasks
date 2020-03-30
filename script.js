@@ -1,18 +1,22 @@
-let num = 266219;
-num = String(num).split('');
-let len = num.length;
-let i=0;
-let Dob = 1;
-while(i<len){
-    Dob *= num[i];
-    i++;
+const lang = prompt("en or ru?");
+const ru = "Понидельник, Вторник, Среда, Четверг, Пятница, Субота, Воскресенье";
+const en = 'Monday, Thursday, Wednesday, Tuesday, Friday, Suturday, Sunday';
+const mistake = 'You made mistake. Reload page and try again';
+if (lang == 'ru' || lang == 'Ru'){
+    console.log(ru);
 }
-console.log(Dob);
-let pow = Dob
-let n = 3;
-while(--n){
-    pow*=Dob;
+else if (lang == 'en' || lang == 'En'){
+    console.log(en);
 }
-pow = String(pow);
-pow = pow.substr(0,2);
-console.log(pow);
+else {
+    console.log(mistake);
+}
+
+
+switch(lang){
+    case 'ru':
+    case 'Ru': console.log(ru); break;
+    case 'en':
+    case 'En': console.log(en); break;
+    default : console.log(mistake);
+}
