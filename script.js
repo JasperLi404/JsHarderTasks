@@ -1,28 +1,13 @@
-let arg = prompt('write an argument');
-const getArg = () => {
-    if (typeof(arg) == 'string' ){
-        // console.log('it is string');
-        
-        arg = arg.split(' ');
-        arg = arg.join('');
-        
-        if (arg.length > 30){
-            arg = arg.split('');
-            arg = arg.join('');
-
-            // console.log(arg);
-           
-            arg=arg.slice(0,30);   
-        }
-        arg+='...';
-        console.log(arg);
-    }
-    else{
-        console.log("it is not string. Reload page and write string");
-        
-    }
-    // console.log(arg);
-    
-
+'use strict';
+let arr = ['2323','67672','4442','32','5532','1213','4443'];
+for(let i=0; i<7; i++){
+if (arr[i][0] == '2' || arr[i][0] == '4'){
+    console.log(arr[i][0]);
+    }  
 }
-getArg();
+
+for(let j=1;j<100;j++){
+    if(j % 2 != 0 && j % 3 != 0 && j % 5 != 0 && j % 7 != 0){
+        console.log('Делители этого числа: 1 и ' + j);
+    }
+}
