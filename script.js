@@ -1,13 +1,62 @@
 'use strict';
-let arr = ['2323','67672','4442','32','5532','1213','4443'];
-for(let i=0; i<7; i++){
-if (arr[i][0] == '2' || arr[i][0] == '4'){
-    console.log(arr[i][0]);
-    }  
-}
-
-for(let j=1;j<100;j++){
-    if(j % 2 != 0 && j % 3 != 0 && j % 5 != 0 && j % 7 != 0){
-        console.log('Делители этого числа: 1 и ' + j);
+let isNumber = (n) => {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+};
+let tries = 10;
+const num = Math.ceil(Math.random() * (100 - 1) + 1);
+console.log(num);
+const GuessNumber = () =>{
+    if(tries > 0) { 
+        let bool = confirm("Угадай число от 1 до 100. Хорошо?");
+        if(bool){
+        
+            let input = +prompt('Угадай');
+            if (isNumber(input)){
+            
+                tries--;
+                if (num < input){
+                    
+                    alert('Загаданное число меньше, осталось попыток:' + tries);
+                    GuessNumber();
+                }
+                else if (num > input){
+                    
+                    alert('Загаданное число больше, осталось попыток:' + tries);
+                    GuessNumber();
+                }
+                else if (num == input ){
+                    let boo = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
+                    if(boo){
+                        GuessNumber();
+                    } else {
+                        alert('bye');
+                    }
+                }
+            } else{
+                alert('Введи число!');
+                GuessNumber();
+            } 
+            
+            
+        
+                
+            
+        
+        
     }
+       
+        else{
+            alert('Bye');
+        }
+    }else if (tries == 0){
+        let boo = confirm('Попытки закончились, хотите сыграть еще?');
+        if(boo){
+            GuessNumber();
+        } else {
+            alert('bye');
+        }
+        tries=10;
+    }
+    
 }
+GuessNumber();
