@@ -1,46 +1,49 @@
-let num = [],
-    sum= [],
-    color,
-    h1 = document.createElement('h1');
-for(let i = 0 ; i < 6 ; i++ ){
-    sum[i] = 0;
-    num[i] = Math.round( Math.random() * 10000);
-    // console.log(num[i]);
-    
-    for(let j = 0; j < 4 ; j++){
-        let n = num[i] % 10,
-        st = +j;
-        // console.log(n);
+'use strict';
+document.addEventListener('DOMContentLoaded', function(){
 
-        num[i]= Math.floor(num[i] / 10);
-        // console.log(num[i]);
+    let up=0,
+         right=0;
+    const DOMElement = function(selector, height, width, bg, fontSize,up,right){
+        let el;
+        if(selector[0] === '#'){
+            el = document.createElement('p');
+            el.id = selector.slice(1);
+        } else if(selector[0] === '.'){
+            el = document.createElement('div');
+            el.classList.add(selector.slice(1));
+            
+        }
+        height = height;
+        width = width;
+        bg = bg;
+        fontSize = fontSize;
+        el.style.cssText = `height:${height}; 
+                            width:${width};
+                            background-color:${bg};
+                            font-size:${fontSize};
+                            position:absolute;
+                            bottom:${up + 'px'};
+                            right:${right + 'px'};` ;
+        document.body.prepend(el);
+    };
+   
 
-        sum[i] += Math.pow(2,st) * n;
-        // console.log('sum = ', sum[i]);
+
+    function checkKey(e) {
+        switch(e.keyCode){
+            case 39: right -= 10; break;
+            case 40: up -= 10; break;
+            case 38: up += 10; break;
+            case 37: right +=10; break;
+            default: console.log('dkfhkjdfh');break;
+            
+        }
+        console.log(right, up);
+        document.body.innerHTML='';
+       element = new DOMElement('.eldfgdf','100px','100px','red','2em',up,right); 
     }
-        if (sum[i] >= 10){
-            while(sum[i] > 15){
-                sum[i]-=10;
-            }
-            switch(sum[i]){
-                case 10: sum[i] = 'a';break; 
-                case 11: sum[i] = 'b';break; 
-                case 12: sum[i] = 'c';break; 
-                case 13: sum[i] = 'd';break; 
-                case 14: sum[i] = 'e';break; 
-                case 15: sum[i] = 'f';break; 
-            }
-        }
-        else{
-            sum[i] = toString(sum[i]);
-        }
-        console.log(sum[i]);
-
     
-};
-color = sum.join('');
-console.log(color);
-document.body.style.backgroundColor = color;
-h1.textContent= color;
-document.body.prepend(h1);
-
+    document.onkeydown = checkKey;
+    const element = new DOMElement('.eldfgdf','100px','100px','red','2em',up,right); 
+       console.log(element);
+})
