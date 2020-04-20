@@ -1,0 +1,18 @@
+ .bird{
+    width: 64px;
+    height: 64px;
+    position: relative;
+}
+.reset{
+    position: relative;
+    top: 560px;
+    background-color: #969a;
+    width: 100px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: sans-serif;
+    cursor: pointer;
+}
