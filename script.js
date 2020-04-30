@@ -19,8 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         return reject();
                     }
             });
+        })
         }
-        });
+        
         car()
         .then(() => {
             const data = JSON.parse(request.responseText);
