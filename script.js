@@ -62,16 +62,16 @@ const setCards = (photo, name, realName, citizenship, gender, species, birthDay,
 const chooseCard = (event) => {
      event.preventDefault();
      const target = event.target;
-     categories.childNodes.forEach(item => {
-          if(item.className == 'movie choosed') item.classList.remove('choosed');
-     })
-     target.classList.add('choosed');
-     const film = target.getAttribute('film');
-     cards.forEach(item => item.innerHTML=``);
-     collection.innerHTML =`<div class="cards"></div>`;
-     i = 0;
-     cards = document.querySelectorAll('.cards');
      if(target.classList.contains('movie')){
+          categories.childNodes.forEach(item => {
+               if(item.className == 'movie choosed') item.classList.remove('choosed');
+          });
+          target.classList.add('choosed');
+          const film = target.getAttribute('film');
+          cards.forEach(item => item.innerHTML=``);
+          collection.innerHTML =`<div class="cards"></div>`;
+          i = 0;
+          cards = document.querySelectorAll('.cards');
           getHeroes(renderCard, cards => cards.filter(item => 
                {    
                     if(item.movies) return item.movies.includes(film);
