@@ -1,86 +1,92 @@
-'use strict';
+const collection = document.querySelector('.collection'),
+      categories = document.querySelector('.categories');
+let cards = document.querySelectorAll('.cards');
+let db = [], i=0;
+const getHeroes = (handler, randomPosition) => {
+     fetch('./dbHeroes.json')
+     .then(response => response.json())
+     .then(randomPosition)
+     .then(handler);
 
-let today = 'Сегодня ',
-     write,
-     day,
-     item,
-     h1w = document.getElementById('words'),
-     h1n = document.getElementById('numbers');
-const regularity = (value,first, second, third) => {
-     if(value == 1 || value == 21 || value == 31 || value == 41 || value == 51){
-          item = first;
-     }
-     else {
-               item = third;
-     }
-     if(value == 2 || value == 3 || value == 4 || value == 22 || value == 24 || value == 23 ||
-           value == 32 || value == 34 || value == 33 || value == 42 || value == 44 || value == 43 
-          || value == 52 || value == 54 || value == 53){
-               item = second;
-     }
-     else {
-               item = third;
-     }
-     return item;
-}, 
-     add0 = (num) => {
-          if (num < 10){
-              num = 0 + String(num);
-          }
-          return num;
-     },
-     wordsDate = () => {
-     let  date = new Date(),
-          day = date.getDay(),
-          hour = date.getHours(),
-          min = date.getMinutes(),
-          sec = date.getSeconds(),
-          week = date.getDate(),
-          month = date.getMonth(),
-          year = date.getUTCFullYear();
-     switch(day){
-          case 1 : day = 'Понидельник, ';break;
-          case 2 : day = 'Вторник, ';break;
-          case 3 : day = 'Среда, ';break;
-          case 4 : day = 'Четверг, ';break;
-          case 5 : day = 'Пятница, ';break;
-          case 6 : day = 'Субота, ';break;
-          case 0 : day = 'Воскресенье, ';break;
-     }
-     switch(month){
-          case 0 : month = ' Января, '; break;
-          case 1 : month = ' Февраля, '; break;
-          case 2 : month = ' Марта, '; break;
-          case 3 : month = ' Апреля, '; break;
-          case 4 : month = ' Мая, '; break;
-          case 5 : month = ' Июня, '; break;
-          case 6 : month = ' Июля, '; break;
-          case 7 : month = ' Августа, '; break;
-          case 8 : month = ' Сентября, '; break;
-          case 9 : month = ' Октября, '; break;
-          case 10 : month = ' Ноября, '; break;
-          case 11 : month = ' Декабря, '; break;
-
-     }
-     write = today + day + week + month + year + " года, " + hour +
-     regularity(hour, ' час ',' часа ',' часов ') + min + regularity(min, ' минута ',' минуты ',' минут ') +
-     sec + regularity(sec, ' секунда ',' секунды ',' секунд ') ;
-     // console.log();
+}
+const getData = (data) => {
+     data.forEach(item => db.push(item));
+};
+const setCards = (photo, name, realName, citizenship, gender, species, birthDay, deathDay, status, movies) => {
      
-     h1w.textContent = write;
-},
-     numDate = () => {
-          let  date = new Date(),
-               hour = add0(date.getHours()),
-               min = add0(date.getMinutes()),
-               sec = add0(date.getSeconds()),
-               week = add0(date.getDate()),
-               month = add0( date.getMonth() + 1),
-               year = add0(date.getUTCFullYear());
-          write = week + '.' + month + '.' + year + '   -   ' + hour + '.' + min + '.' + sec;
-          h1n.textContent = write;
-      
+     let str = ``, movie;
+     let card = document.createElement('div');
+     let img = document.createElement('img');
+     let text = document.createElement('div');
+     const checkIt = (str, real) => {
+          let string = ``;
+          if(real) string = str + ` : ${real} <br>`;
+          else string =``;
+          return string;
      }
+          card.classList.add('card');
+          card.setAttribute('Movies', movies);
+          img.classList.add('img');
+          text.classList.add('text');
+          
+     if(cards[i].childNodes.length === 3) {
+          let cardNew = cards[i].cloneNode();
+          collection.append(cardNew);
+          cards = document.querySelectorAll('.cards');
+          i++;
+     }
+          cards[i].append(card);
+          img.src = photo;
+          img.alt = photo;
+          str = ` Name: ${name} <br>`;
+          if(name !== realName && realName){
+               str += `Real name : ${realName}  <br>`;
+          }
+          str += `Species : ${species}  <br>`;
+          str += checkIt('Citizenship', citizenship);
+          str += checkIt('Gender', gender);
+          str += checkIt('Birth day', birthDay);
+          str += checkIt('Death day', deathDay);
+          str += checkIt('Status', status);
+          
+          if(movies){
+               movie = movies.join(`; <br>`);
+               str += `Movies :  ${movie}`;
+          }
+          text.innerHTML = str;
+          
+          card.append(img);
+          card.append(text);
+};
 
-setInterval(wordsDate, 1000);
-setInterval(numDate, 1000);
+const chooseCard = (event) => {
+     event.preventDefault();
+     const target = event.target;
+     categories.childNodes.forEach(item => {
+          if(item.className == 'movie choosed') item.classList.remove('choosed');
+     })
+     target.classList.add('choosed');
+     const film = target.getAttribute('film');
+     cards.forEach(item => item.innerHTML=``);
+     collection.innerHTML =`<div class="cards"></div>`;
+     i = 0;
+     cards = document.querySelectorAll('.cards');
+     if(target.classList.contains('movie')){
+          getHeroes(renderCard, cards => cards.filter(item => 
+               {    
+                    if(item.movies) return item.movies.includes(film);
+                    else return false;
+               }));
+          }
+     }
+const renderCard = (items) => {
+     items.forEach(item => 
+     
+     setCards(item.photo, item.name, item.realName, item.citizenship, 
+          item.gender, item.species, item.birthDay, item.deathDay, item.status, 
+          item.movies));
+}
+const getPosition = item => item.sort(()=> Math.random() - 0.5);
+categories.addEventListener('click', chooseCard);
+getHeroes(renderCard, getPosition);
+
