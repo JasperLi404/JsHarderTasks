@@ -1,50 +1,45 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="shortcut icon" href="./dbimage/miscellaneous.png">
-    <title>Marvel Heroes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
 </head>
+
 <body>
-    <div class="show">
-        <div class="slash"></div>
-        <div class="slash"></div>
-        <div class="slash"></div>
+  <section class="main">
+    <div class="input-cities">
+      <input id="select-cities" type="text" placeholder="">
+      <div class="close-button"></div>
+      <label class="label" for="select-cities">Страна или город</label>
+      <span class="focus-border"><i></i></span>
+      <div class="dropdown">
+        <div class="dropdown-lists">
+          <div class="dropdown-lists__list dropdown-lists__list--default">
+            <div class="dropdown-lists__col">
+              
+            </div>
+          </div>
+          <div class="dropdown-lists__list dropdown-lists__list--select">
+            <div class="dropdown-lists__col">
+              
+            </div>
+          </div>
+          <div class="dropdown-lists__list dropdown-lists__list--autocomplete">
+            <div class="dropdown-lists__col">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="button" href="#">Перейти</a>
     </div>
-    <div class="categories">
-        <li class = 'movie' film = 'Iron Man'>Iron Man</li>
-        <li class = 'movie' film = 'Iron Man 2'>Iron Man 2</li>
-        <li class = 'movie' film = 'Iron Man 3'>Iron Man 3</li>
-        <li class = 'movie' film = 'Doctor Strange'>Doctor Strange</li>
-        <li class = 'movie' film = 'Ant-Man'>Ant-Man</li>
-        <li class = 'movie' film = 'Ant-Man and the Wasp'>Ant-Man and the Wasp</li>
-        <li class = 'movie' film = 'Black Panther'>Black Panther</li>
-        <li class = 'movie' film = 'The Avengers'>The Avengers</li>
-        <li class = 'movie' film = 'Avengers: Infinity War'>Avengers: Infinity War</li>
-        <li class = 'movie' film = 'Avengers: Age of Ultron'>Avengers: Age of Ultron</li>
-        <li class = 'movie' film = 'Avengers: Endgame'>Avengers: Endgame</li>
-        <li class = 'movie' film = 'Captain America: The First Avenger'>Captain America: The First Avenger</li>
-        <li class = 'movie' film = 'Captain America: The Winter Soldier'>Captain America: The Winter Soldier</li>
-        <li class = 'movie' film = 'Captain America: Civil War'>Captain America: Civil War</li>
-        <li class = 'movie' film = 'Captain Marvel'>Captain Marvel</li>
-        <li class = 'movie' film = 'Thor'>Thor</li>
-        <li class = 'movie' film = 'Thor: Ragnarok'>Thor: Ragnarok</li>
-        <li class = 'movie' film = 'Thor: The Dark World'>Thor: The Dark World</li>
-        <li class = 'movie' film = 'Guardians of the Galaxy'>Guardians of the Galaxy</li>
-        <li class = 'movie' film = 'Guardians of the Galaxy Vol. 2'>Guardians of the Galaxy Vol. 2</li>
-        <li class = 'movie' film = 'The Incredible Hulk'>The Incredible Hulk</li>
-        <li class = 'movie' film = 'Spider-Man: Homecoming'>Spider-Man: Homecoming</li>
-        <li class = 'movie' film = 'Spider-Man: Far From Home'>Spider-Man: Far From Home</li>
-        
-
-    </div>
-    <div class="collection">
-        <div class="cards"></div>
-        
-
-    </div>
-    <script src="script.js"></script>
+  </section>
+  <script src="./db_cities.js"></script>
 </body>
+
 </html>
